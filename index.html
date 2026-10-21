@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark light">
+    <title>untitled.links</title>
+    <meta name="description" content="Агрегатор проверенных программ и инструментов после переустановки Windows: загрузочная флешка, софт, обход блокировок и веб-инструменты.">
+    <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#fdfdf7" media="(prefers-color-scheme: light)">
+    <link rel="canonical" href="https://maxnstr.github.io/Clarity/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="untitled.links">
+    <meta property="og:title" content="untitled.links">
+    <meta property="og:description" content="Загрузочная флешка с Windows, базовый софт, обход блокировок и веб-инструменты в одном месте.">
+    <meta property="og:url" content="https://maxnstr.github.io/Clarity/">
+    <meta property="og:locale" content="ru_RU">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="untitled.links">
+    <meta name="twitter:description" content="Загрузочная флешка с Windows, базовый софт, обход блокировок и веб-инструменты в одном месте.">
+    <link rel="icon" type="image/png" href="res/favicon.png">
+    <script>
+        (function () {
+            var d = document.documentElement;
+            d.classList.add('js');
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                d.classList.add('intro');
+                window.__introDither = 0;
+                setTimeout(function () { d.classList.remove('intro'); }, 6000);
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile.css">
+</head>
+<body>
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: light)').matches) document.body.classList.add('light-theme');
+    </script>
+    <canvas id="dither-canvas" aria-hidden="true"></canvas>
+    <canvas id="ascii-canvas" aria-hidden="true"></canvas>
+
+    <header>
+        <div class="nav-wrapper">
+
+            <div class="nav-pill" id="nav-pill">
+                <div class="nav-categories" id="nav-categories">
+                    <div class="nav-indicator" id="nav-indicator"></div>
+                    <a href="#windows" class="nav-link">Windows</a>
+                    <a href="#soft" class="nav-link">Soft &amp; Utils</a>
+                    <a href="#proxy" class="nav-link">Proxy & VPN</a>
+                    <a href="#web" class="nav-link">Web tools</a>
+                </div>
+
+                <div class="nav-mobile-label" id="nav-mobile-label">untitled.links</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="hero" id="main">
+        <div id="ascii-logo" class="ascii-hero" role="img" aria-label="untitled.links"></div>
+
+        <div class="hero-text">
+            <p><strong>untitled.links</strong> — удобный агрегатор проверенных приложений и программ, которые пригодятся сразу после установки ОС.</p>
+            <p>Здесь можно <a href="#windows">создать загрузочную флешку</a> с Windows. А после, подобрать нужные <a href="#soft">программы</a>, <a href="#proxy">средства обхода блокировок</a> и <a href="#web">веб-инструменты</a>.</p>
+        </div>
+        <a href="#windows" class="scroll-hint" aria-label="Прокрутить вниз">
+            <span>scroll</span>
+            <span class="arrow" aria-hidden="true">↓</span>
+        </a>
+    </main>
+
+
+    <section id="windows" class="content-section">
+        <h2>Windows</h2>
+        <p class="section-description">Пошаговая подготовка установочной флешки: образ, файл ответа и запись на флешку.</p>
+
+        <div class="steps">
+            <div class="step" id="step-image">
+                <div class="step-marker"><span class="step-number">1</span></div>
+                <div class="step-content">
+                    <h3 class="step-title">Образ</h3>
+                    <p class="step-text">Скачайте ISO-образ Windows: с официального сайта Microsoft или соберите актуальный образ через UUP dump.</p>
+                    <div class="software-grid">
+                        <div class="software-card">
+                            <div class="card-header"><h3>Microsoft</h3></div>
+                            <p>Официальная страница загрузки образов Windows от Microsoft.</p>
+                            <a href="https://www.microsoft.com/ru-ru/software-download" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+                        </div>
+
+                        <div class="software-card">
+                            <div class="card-header">
+                                <h3>UUP dump</h3>
+                                <span class="tag-badge open-source">open source</span>
+                            </div>
+                            <p>Сборка актуального образа Windows напрямую с серверов Microsoft. Гибкая настройка версии, языка и архитектуры.</p>
+                            <a href="https://uupdump.net/" target="_blank" rel="noopener noreferrer" class="download-btn">Открыть</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step" id="step-answer">
+                <div class="step-marker"><span class="step-number">2</span></div>
+                <div class="step-content">
+                    <h3 class="step-title">Файл ответа</h3>
+                    <p class="step-text">Сгенерируйте свой autounattend.xml или скачайте готовый: он автоматизирует часть шагов установки. Чтобы после установки нужные файлы оказались на рабочем столе, создайте на флешке папку extras и добавьте в файл ответа скрипт ниже: он скопирует её содержимое на общий рабочий стол.</p>
+                    <div class="software-grid">
+                        <div class="card-win98-outer" id="win98-outer">
+                            <div class="win98-window">
+                                <div class="win98-titlebar">
+                                    <div class="win98-titlebar-title">
+                                        <div class="win98-titlebar-icon"></div>
+                                        autounattend.xml
+                                    </div>
+                                    <div class="win98-titlebar-buttons">
+                                        <div class="win98-btn-chrome" id="win98-close-btn" title="Закрыть">✕</div>
+                                    </div>
+                                </div>
+                                <div class="win98-body">
+                                    <div class="win98-title-text">Файл ответа для образа windows</div>
+                                    <div class="win98-actions">
+                                        <a href="https://schneegans.de/windows/unattend-generator/" target="_blank" rel="noopener noreferrer" class="btn-win98">Генерировать</a>
+                                        <a href="res/autounattend.xml" download="autounattend.xml" class="btn-win98">Скачать</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-bar">
+                            <span class="code-title">PowerShell</span>
+                            <button type="button" class="download-btn code-copy" data-copy-target="extras-script">Копировать</button>
+                        </div>
+                        <pre class="code-pre" id="extras-script">$dest = 'C:\Users\Public\Desktop'
+New-Item -ItemType Directory -Path $dest -Force | Out-Null
+
+$src = Get-PSDrive -PSProvider FileSystem |
+    Where-Object {
+        $root = $_.Root
+        (Test-Path (Join-Path $root 'extras')) -and
+        (
+            (Test-Path (Join-Path $root 'setup.exe')) -or
+            (Test-Path (Join-Path $root 'sources\boot.wim'))
+        )
+    } |
+    Select-Object -First 1
+
+if ($src) {
+    $extras = Join-Path $src.Root 'extras'
+    Copy-Item "$extras\*" $dest -Recurse -Force
+} else {
+    Write-Host 'Установочная флешка с папкой extras не найдена.'
+}</pre>
+                        <p class="code-note">Скрипт ищет установочную флешку по папке extras и файлу setup.exe или sources\boot.wim.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step is-last" id="step-rufus">
+                <div class="step-marker"><span class="step-number">3</span></div>
+                <div class="step-content">
+                    <h3 class="step-title">Rufus</h3>
+                    <p class="step-text">Запишите образ на флешку: Rufus сделает её загрузочной. Затем положите в корень флешки autounattend.xml и папку extras: её содержимое попадёт на рабочий стол.</p>
+                    <div class="software-grid has-art">
+                        <div class="software-card">
+                            <div class="card-header">
+                                <h3>Rufus</h3>
+                                <span class="tag-badge open-source">open source</span>
+                            </div>
+                            <p>Утилита для создания загрузочных USB-накопителей. Поддерживает образы Windows, Linux и UEFI.</p>
+                            <div class="btn-row">
+                                <a href="https://rufus.ie/ru/" target="_blank" rel="noopener noreferrer" class="download-btn">Официальный сайт</a>
+                                <a href="https://github.com/pbatard/rufus/releases" target="_blank" rel="noopener noreferrer" class="download-btn">GitHub</a>
+                            </div>
+                        </div>
+                        <div class="step-art" aria-hidden="true">
+                            <canvas id="usb-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="soft" class="content-section">
+        <h2>Soft &amp; Utils</h2>
+        <p class="section-description">Базовые программы для комфортной работы за ПК, инструменты разработчика и утилиты для игр.</p>
+
+        <h2 class="sub-heading head-soft" id="soft-base">Базовые программы</h2>
+
+        <div class="software-grid grid-soft">
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/utorrent.svg" alt="">
+                <h3>µTorrent</h3>
+                <p>Торрент-клиент.</p>
+                <a href="https://www.utorrent.com/intl/ru/" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/discord.svg" alt="">
+                <h3>Discord</h3>
+                <p>Голосовой и текстовый чат.</p>
+                <a href="https://discord.com/download" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/spotify.svg" alt="">
+                <h3>Spotify</h3>
+                <p>Музыка и подкасты.</p>
+                <a href="https://www.spotify.com/by-ru/download/windows/" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/obsidian.svg" alt="">
+                <h3>Obsidian</h3>
+                <p>Заметки и база знаний.</p>
+                <a href="https://obsidian.md/download" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/nvidia.svg" alt="">
+                <h3>NVIDIA APP</h3>
+                <p>Драйверы и настройки видеокарты.</p>
+                <a href="https://www.nvidia.com/en-eu/software/nvidia-app/" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/winrar.svg" alt="">
+                <h3>WinRAR</h3>
+                <p>Архиватор.</p>
+                <a href="https://www.win-rar.com/start.html?&L=4" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/steam.svg" alt="">
+                <h3>Steam</h3>
+                <p>Магазин и библиотека игр.</p>
+                <a href="https://store.steampowered.com/about/" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/obs.svg" alt="">
+                <div class="card-header"><h3>OBS Studio</h3><span class="tag-badge open-source">open source</span></div>
+                <p>Запись экрана и стримы.</p>
+                <a href="https://obsproject.com/ru/download" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/vac.svg" alt="">
+                <h3>Virtual Audio Cable</h3>
+                <p>Виртуальные аудиоканалы.</p>
+                <a href="https://vac.muzychenko.net/en/download.htm" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+        </div>
+
+        <h2 class="sub-heading head-code" id="soft-code">ПО для кодинга</h2>
+
+        <div class="software-grid grid-code">
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/vscode.svg" alt="">
+                <div class="card-header"><h3>VS Code</h3><span class="tag-badge open-source">open source</span></div>
+                <p>Легкий, но невероятно мощный редактор кода от Microsoft.</p>
+                <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/python.svg" alt="">
+                <h3>Python</h3>
+                <p>Интерпретатор одного из самых популярных языков программирования.</p>
+                <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/pycharm.svg" alt="">
+                <h3>PyCharm</h3>
+                <p>Интегрированная среда разработки (IDE) для Python от JetBrains.</p>
+                <a href="https://www.jetbrains.com/pycharm/" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/android-studio.svg" alt="">
+                <h3>Android Studio</h3>
+                <p>Официальная среда разработки для создания приложений под Android.</p>
+                <a href="https://developer.android.com/studio?hl=ru" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/git.svg" alt="">
+                <div class="card-header"><h3>Git</h3><span class="tag-badge open-source">open source</span></div>
+                <p>Распределенная система управления версиями файлов.</p>
+                <a href="https://git-scm.com/install/windows" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card has-logo">
+                <img class="card-logo" src="logos/nodejs.svg" alt="">
+                <h3>NodeJS</h3>
+                <p>Программная платформа, основанная на движке V8, для выполнения JavaScript.</p>
+                <a href="https://nodejs.org/en/download" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+        </div>
+
+        <h2 class="sub-heading head-alt" id="soft-alt">Open source альтернативы</h2>
+
+        <div class="software-grid grid-alt">
+            <div class="software-card alt-card alt-big">
+                <div class="card-header"><h3>ArtCraft: Crafting Apps</h3><span class="tag-badge open-source">open source</span></div>
+                <p>Семейство нативных приложений на Rust для работы с изображениями, графикой, видео, звуком, документами и таблицами. Бесплатно, без Electron. Многие пока в разработке или ранней альфе.</p>
+                <div class="btn-row">
+                    <a href="https://getartcraft.com/apps" target="_blank" rel="noopener noreferrer" class="download-btn btn-primary">Все приложения</a>
+                    <a href="https://github.com/storytold/craft-launcher" target="_blank" rel="noopener noreferrer" class="download-btn">ArtCraft Launcher (GitHub)</a>
+                </div>
+            </div>
+
+            <div class="software-card alt-voice">
+                <div class="card-header"><h3>VoiceStudio</h3><span class="tag-badge open-source">open source</span></div>
+                <p>Локальная студия озвучки: клонирование и дизайн голоса, дубляж видео, транскрипция и аудиокниги на 646 языках. Без аккаунта и облака.</p>
+                <div class="btn-row">
+                    <a href="https://voicestudio.sh/" target="_blank" rel="noopener noreferrer" class="download-btn">Официальный сайт</a>
+                    <a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener noreferrer" class="download-btn">GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="sub-heading head-games" id="soft-games">Утилиты для игр</h2>
+
+        <div class="software-grid grid-games">
+            <div class="software-card">
+                <h3>DS4Windows</h3>
+                <p>Эмулятор геймпадов — позволяет использовать контроллер PlayStation на ПК как Xbox-совместимый.</p>
+                <a href="https://ds4-windows.com/" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать</a>
+            </div>
+
+            <div class="software-card">
+                <div class="card-header"><h3>DLSS Swapper</h3><span class="tag-badge open-source">open source</span></div>
+                <p>Замена библиотеки DLSS на самую актуальную версию в одиночных играх для улучшения качества картинки.</p>
+                <a href="https://github.com/beeradmoore/dlss-swapper" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать с GitHub</a>
+            </div>
+
+            <div class="software-card">
+                <div class="card-header"><h3>DLSSTweaks</h3><span class="tag-badge open-source">open source</span></div>
+                <p>Тонкая настройка DLSS: принудительное включение DLAA, изменение режимов и параметров масштабирования.</p>
+                <a href="https://github.com/emoose/DLSSTweaks/releases" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать с GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="proxy" class="content-section">
+        <h2>Proxy & VPN</h2>
+        <p class="section-description">Инструменты для безопасного серфинга в сети.</p>
+
+        <div class="software-grid">
+           <div class="software-card card-wide amnezia-card">
+                <div class="card-header"><h3>Amnezia VPN</h3><span class="tag-badge open-source">open source</span></div>
+                <p>Бесплатный клиент для создания собственного VPN на личном сервере.</p>
+                <div class="btn-row">
+                    <a href="https://amnezia.org/ru" target="_blank" rel="noopener noreferrer" class="download-btn amnezia-ghost">Официальный сайт</a>
+                    <a href="https://github.com/amnezia-vpn/amneziawg-windows-client/releases" target="_blank" rel="noopener noreferrer" class="download-btn amnezia-ghost">AmneziaWG (GitHub)</a>
+                    <a href="https://github.com/ImMALWARE/bash-warp-generator/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="download-btn amnezia-solid">Генератор конфига Cloudflare WARP</a>
+                </div>
+            </div>
+
+            <div class="software-card">
+                <h3>VPNLY</h3>
+                <p>Удобное и полностью бесплатное VPN-расширение для браузера.</p>
+                <a href="https://chromewebstore.google.com/detail/бесплатный-vpn-proxy-vpnl/lneaocagcijjdpkcabeanfpdbmapcjjg?hl=ru" target="_blank" rel="noopener noreferrer" class="download-btn">Установить расширение</a>
+            </div>
+
+            <div class="software-card">
+                <div class="card-header"><h3>Zapret</h3><span class="tag-badge open-source">open source</span></div>
+                <p>Мощный инструмент для обхода DPI-блокировок (помогает с YouTube, Discord и др.).</p>
+                <a href="https://github.com/Flowseal/zapret-discord-youtube" target="_blank" rel="noopener noreferrer" class="download-btn">Скачать с GitHub</a>
+            </div>
+
+            <div class="globe-cell" aria-hidden="true">
+                <canvas id="globe-canvas"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section id="web" class="content-section">
+        <h2>Web tools</h2>
+        <p class="section-description">Онлайн-инструменты для файлов, кода и медиа — без установки программ.</p>
+
+        <div class="software-grid">
+            <div class="software-card">
+                <h3>iLovePDF</h3>
+                <p>Конвертация, объединение, сжатие и редактирование PDF и DOCX прямо в браузере.</p>
+                <a href="https://www.ilovepdf.com/ru/word_to_pdf" target="_blank" rel="noopener noreferrer" class="download-btn">Открыть</a>
+            </div>
+
+            <div class="software-card">
+                <h3>HTML Validator</h3>
+                <p>Онлайн-инструмент для проверки корректности и валидности HTML-кода.</p>
+                <a href="https://www.freeformatter.com/html-validator.html" target="_blank" rel="noopener noreferrer" class="download-btn">Открыть</a>
+            </div>
+
+            <div class="software-card">
+                <div class="card-header"><h3>Cobalt</h3><span class="tag-badge open-source">open source</span></div>
+                <p>Скачивает видео и аудио с YouTube, VK, TikTok, Twitter и десятков других платформ — быстро и без рекламы.</p>
+                <a href="https://cobalt.tools/" target="_blank" rel="noopener noreferrer" class="download-btn">Открыть</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <pre class="footer-art" aria-hidden="true">##      ##  ########      ##          ##      ##        ####      ######            ##      ####      ##    ########    ##            ########
+##      ##  ##      ##  ########            ########      ##    ##      ##    ########        ##            ##      ##  ##    ##    ##
+##      ##  ##      ##    ##          ##      ##          ##    ##########  ##      ##        ##      ##    ##      ##  ######        ######
+##      ##  ##      ##    ##    ##    ##      ##    ##    ##    ##          ##      ##        ##      ##    ##      ##  ##    ##            ##
+  ######    ##      ##      ####      ##        ####      ####    ########    ########  ##    ####    ##    ##      ##  ##      ##  ########</pre>
+        <div class="footer-name">untitled.links</div>
+        <div class="footer-row">
+            <span>untitled.links · 2026</span>
+            <a href="#top" class="footer-top">↑ наверх</a>
+        </div>
+    </footer>
+
+    <nav class="bottom-nav" id="bottom-nav">
+        <a href="#windows" class="bottom-nav-btn" data-section="windows" aria-label="Windows">
+            <span>win</span>
+        </a>
+        <a href="#soft" class="bottom-nav-btn" data-section="soft" aria-label="Soft &amp; Utils">
+            <span>soft</span>
+        </a>
+        <a href="#proxy" class="bottom-nav-btn" data-section="proxy" aria-label="VPN">
+            <span>vpn</span>
+        </a>
+        <a href="#web" class="bottom-nav-btn" data-section="web" aria-label="Web tools">
+            <span>web</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+    <script src="dither.js"></script>
+    <script src="ascii.js"></script>
+    <script src="usb.js"></script>
+    <script src="globe.js"></script>
+    <script src="steps.js"></script>
+    <script src="copy.js"></script>
+</body>
+</html>
